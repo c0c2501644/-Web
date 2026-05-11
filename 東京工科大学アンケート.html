@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>東京工科大学在学生向けアンケート</title>
+    <script src="https://yubinbango.github.io/yubinbango/yubinbango.js" charset="UTF-8"></script>
+    <style>
+        /* 全ての文字を中央揃えにする設定 */
+        body {
+            text-align: center;
+            font-family: sans-serif;
+            padding: 20px;
+        }
+
+        /* フォームの各項目を縦に並べて、入力欄も中央に見えるように調整 */
+        form {
+            display: inline-block; /* フォーム自体を中央に配置 */
+            text-align: left;      /* 入力項目内のラベルなどは左詰めにすると見やすい */
+            max-width: 400px;
+            width: 100%;
+        }
+
+        /* ラベルや入力欄をブロック化して中央に配置しやすくする */
+        .form-group {
+            margin-bottom: 20px;
+            text-align: center; /* 項目の中身も中央揃え */
+        }
+
+        input[type="text"],
+        input[type="email"],
+        select,
+        textarea {
+            width: 100%;       /* 幅を揃える */
+            box-sizing: border-box;
+            margin-top: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>東京工科大学CS学部在学生向けアンケート</h1>
+    <p>以下の項目を入力してください。（※は必須項目です）</p>
+
+    <form action="https://formspree.io/f/xeenvabe" method="POST" class="h-adr">
+        <span class="p-country-name" style="display:none;">Japan</span>
+        
+        <div class="form-group">
+            <label for="name">氏名 ※</label><br>
+            <input type="text" id="name" name="user_name" placeholder="工科 太郎" required>
+        </div>
+
+        <div class="form-group">
+            <label for="student_id">学籍番号 ※</label><br>
+            <input type="text" id="student_id" name="student_id" placeholder="C0C2XXXX" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email">大学メールアドレス ※</label><br>
+            <input type="email" id="email" name="user_email" placeholder="c0c2XXXXXX@teu.edu.ac.jp" required>
+        </div>
+
+        <div class="form-group">
+            <label for="age">学年 ※</label><br>
+            <select id="age" name="user_age" required>
+                <option value="">選択してください</option>
+                <option value="1s">1年生</option>
+                <option value="2s">2年生</option>
+                <option value="3s">3年生</option>
+                <option value="4s+">4年生</option>
+                <option value="graduate">院生</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="zip">郵便番号 ※</label><br>
+            <input type="text" id="zip" name="user_zip" class="p-postal-code" maxlength="8" placeholder="192-0982" required> 
+            <small>※ハイフンありでもなしでもOK</small>
+        </div>
+
+        <div class="form-group">
+            <label for="address">現住所 ※</label><br>
+            <input type="text" id="address" name="user_address" class="p-region p-locality p-street-address p-extended-address" placeholder="東京都八王子市片倉町１４０４−１" required>
+            <input type="text" name="user_address_detail" style="margin-top: 5px;" placeholder="マンション名・部屋番号">
+        </div>
+
+        <div class="form-group">
+            <label for="message">大学への意見がある場合入力してください</label><br>
+            <textarea id="message" name="user_message" rows="4" placeholder="自由に入力してください（任意）"></textarea>
+        </div>
+
+        <div class="form-group">
+            <button type="submit">送信する</button>
+        </div>
+    </form>
+
+</body>
+</html>
