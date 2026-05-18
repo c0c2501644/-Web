@@ -5,39 +5,117 @@
     <title>曰本社会事業大学在学生向けアンケート</title>
     <script src="https://yubinbango.github.io/yubinbango/yubinbango.js" charset="UTF-8"></script>
     <style>
-        /* 全ての文字を中央揃えにする設定 */
+        /* 背景にかっこいいグラデーションとグリッド模様を設定 */
         body {
             text-align: center;
-            font-family: sans-serif;
-            padding: 20px;
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            padding: 40px 20px;
+            margin: 0;
+            min-height: 100vh;
+            background-color: #0f172a; /* ベースの濃い紺色 */
+            /* グラデーションと近未来的なグリッドの背景効果 */
+            background-image: 
+                linear-gradient(to bottom, rgba(15, 23, 42, 0.8), rgba(30, 41, 59, 0.9)),
+                linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 100% 100%, 20px 20px, 20px 20px;
+            color: #f8fafc; /* 文字を読みやすい白系に */
         }
 
-        /* フォームの各項目を縦に並べて、入力欄も中央に見えるように調整 */
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 10px;
+            color: #f1f5f9;
+        }
+
+        p {
+            color: #94a3b8;
+            margin-bottom: 30px;
+        }
+
+        /* フォーム全体を浮かび上がるガラス風の白いボックスにする */
         form {
-            display: inline-block; /* フォーム自体を中央に配置 */
-            text-align: left;      /* 入力項目内のラベルなどは左詰めにすると見やすい */
-            max-width: 400px;
+            display: inline-block;
+            text-align: left;
+            max-width: 460px;
             width: 100%;
+            background: rgba(255, 255, 255, 0.95); /* 高級感のある白背景 */
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+            color: #1e293b; /* ボックス内の文字は濃い色にして見やすく */
+            box-sizing: border-box;
         }
 
-        /* ラベルや入力欄をブロック化して中央に配置しやすくする */
+        /* 各入力項目の枠組み */
         .form-group {
-            margin-bottom: 20px;
-            text-align: center; /* 項目の中身も中央揃え */
+            margin-bottom: 24px;
         }
 
+        label {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #334155;
+        }
+
+        /* 入力欄のデザインを洗練された形に */
         input[type="text"],
         input[type="email"],
         select,
         textarea {
-            width: 100%;       /* 幅を揃える */
+            width: 100%;
             box-sizing: border-box;
-            margin-top: 5px;
+            margin-top: 6px;
+            padding: 10px 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 1rem;
+            background-color: #f8fafc;
+            transition: all 0.2s ease;
         }
 
+        /* 入力欄をクリックしたときのエフェクト */
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+            background-color: #ffffff;
+        }
+
+        small {
+            color: #64748b;
+            display: block;
+            margin-top: 4px;
+        }
+
+        /* 送信ボタンを青く光るかっこいいデザインに */
         button {
-            padding: 10px 20px;
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
             cursor: pointer;
+            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+            transition: all 0.2s ease;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #1d4ed8, #1e40af);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 12px -1px rgba(37, 99, 235, 0.3);
+        }
+
+        button:active {
+            transform: translateY(1px);
         }
     </style>
 </head>
@@ -50,22 +128,22 @@
         <span class="p-country-name" style="display:none;">Japan</span>
         
         <div class="form-group">
-            <label for="name">氏名 ※</label><br>
+            <label for="name">氏名 ※</label>
             <input type="text" id="name" name="user_name" placeholder="日本 社会" required>
         </div>
 
         <div class="form-group">
-            <label for="student_id">学籍番号 ※</label><br>
+            <label for="student_id">学籍番号 ※</label>
             <input type="text" id="student_id" name="student_id" placeholder="" required>
         </div>
 
         <div class="form-group">
-            <label for="email">大学メールアドレス ※</label><br>
+            <label for="email">大学メールアドレス ※</label>
             <input type="email" id="email" name="user_email" placeholder="example@university.ac.jp" required>
         </div>
 
         <div class="form-group">
-            <label for="age">学年 ※</label><br>
+            <label for="age">学年 ※</label>
             <select id="age" name="user_age" required>
                 <option value="">選択してください</option>
                 <option value="1s">1年生</option>
@@ -77,25 +155,23 @@
         </div>
 
         <div class="form-group">
-            <label for="zip">郵便番号 ※</label><br>
+            <label for="zip">郵便番号 ※</label>
             <input type="text" id="zip" name="user_zip" class="p-postal-code" maxlength="8" placeholder="204-0023" required> 
             <small>※ハイフンありでもなしでもOK</small>
         </div>
 
         <div class="form-group">
-            <label for="address">現住所 ※</label><br>
+            <label for="address">現住所 ※</label>
             <input type="text" id="address" name="user_address" class="p-region p-locality p-street-address p-extended-address" placeholder="東京都清瀬市竹丘３丁目１−３０" required>
-            <input type="text" name="user_address_detail" style="margin-top: 5px;" placeholder="マンション名・部屋番号">
+            <input type="text" name="user_address_detail" style="margin-top: 8px;" placeholder="マンション名・部屋番号">
         </div>
 
         <div class="form-group">
-            <label for="message">大学への意見がある場合入力してください</label><br>
+            <label for="message">大学への意見がある場合入力してください</label>
             <textarea id="message" name="user_message" rows="4" placeholder="自由に入力してください（任意）"></textarea>
         </div>
 
-        <div class="form-group">
-            <button type="submit">送信する</button>
-        </div>
+        <button type="submit">送信する</button>
     </form>
 
 </body>
